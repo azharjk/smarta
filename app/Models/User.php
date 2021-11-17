@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\Subject;
 
 class User extends Authenticatable
 {
@@ -37,7 +36,7 @@ class User extends Authenticatable
         return $this->hasMany(Subject::class);
     }
 
-    public function followedSubjects()
+    public function follows()
     {
         return $this->belongsToMany(Subject::class, 'subjects_followers', 'follower_id', 'subject_id')
                     ->withTimestamps();

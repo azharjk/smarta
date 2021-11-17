@@ -1,10 +1,9 @@
 @extends('layouts.master')
 
-{{-- TODO: change title depends on route --}}
-@section('title', 'Followed Subjects')
+@section('title', 'My Subject')
 
 @section('body_content')
-  <h4>{{ url()->current() == route('mysubject.index') ? 'Followed' : 'My' }} Subjects</h4>
+  <h4>My Subjects</h4>
   <div class="container">
     @foreach ($subjects_chunk as $subjects)
       <div class="row p-2">
@@ -26,3 +25,4 @@
       </div>
     @endforeach
 @endsection
+

@@ -12,10 +12,10 @@
       </div>
       <h5 class="mt-5">Menu</h5>
       <a class="d-block mt-3" href="{{ url('/') }}">Dashboard</a>
-      <a class="d-block mt-2" href="{{ route('subject.index') }}">My Subjects</a>
+      <a class="d-block mt-2" href="{{ route('subject.my') }}">My Subjects</a>
       <a class="d-block mt-2" href="{{ route('subject.create') }}">Create Subject</a>
       <a class="d-block mt-2" href="{{ route('forum.create') }}">Create Forum</a>
-      <a class="d-block mt-2" href="{{ route('mysubject.index') }}">Followed Subjects</a>
+      <a class="d-block mt-2" href="{{ route('subject.followed') }}">Followed Subjects</a>
       <a class="d-block mt-5" href="{{ route('auth.logout') }}">Logout</a>
     </div>
   </div>

@@ -26,6 +26,7 @@ class Subject extends Model
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'subjects_followers', 'subject_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'subjects_followers', 'subject_id', 'follower_id')
+                    ->withTimestamps();
     }
 }

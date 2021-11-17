@@ -4,17 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
 use App\Models\Subject;
 
-// TODO: change controller name or merge with MySubjectController
 class SubjectController extends Controller
 {
-    public function index()
+    public function my()
     {
         // TODO: right now instantly take user from Auth::user()
         $subjects_chunk = Auth::user()->subjects->chunk(3);
 
-        return view('subject.index', ['subjects_chunk' => $subjects_chunk]);
+        return view('subject.my', ['subjects_chunk' => $subjects_chunk]);
+    }
+
+    public function followed()
+    {
+        $subjects_chunk = Auth::user()->follows->chunk(3);
+
+        return view('subject.followed', ['subjects_chunk' => $subjects_chunk]);
     }
 
     public function show($subject_id)

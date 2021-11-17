@@ -2,11 +2,12 @@
 
 namespace Tests\Feature\Controllers;
 
-use App\Models\Forum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+
 use App\Models\User;
 use App\Models\Subject;
+use App\Models\Forum;
 
 class ForumControllerTest extends TestCase
 {

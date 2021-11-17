@@ -1,11 +1,11 @@
 <?php
 
 namespace Tests\Feature\Controllers;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 use App\Models\Subject;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class SubjectControllerTest extends TestCase
 {
@@ -23,25 +23,25 @@ class SubjectControllerTest extends TestCase
 
     public function test_subject_index_status_ok()
     {
-        $response = $this->get(route('subject.index'));
-
+        $response = $this->get(route('subject.my'));
         $response->assertOk();
     }
 
-    public function test_subject_index_subjects_chunk_empty()
+    public function test_subject_my_subjects_chunk_empty()
     {
-        $response = $this->get(route('subject.index'));
+        $response = $this->get(route('subject.my'));
 
         $empty = $response->viewData('subjects_chunk')->isEmpty();
 
         $this->assertTrue($empty);
     }
 
-    public function test_subject_index_subjects_chunk_not_empty()
+    public function test_subject_my_subjects_chunk_not_empty()
     {
         $this->user->subjects()->saveMany(Subject::factory(2)->make());
 
-        $response = $this->get(route('subject.index'));
+        $response = $this->get(route('subject.my'));
+
         $subjects_chunk = $response->viewData('subjects_chunk');
 
         $this->assertCount(2, $subjects_chunk[0]);
@@ -82,5 +82,26 @@ class SubjectControllerTest extends TestCase
         $this->assertDatabaseHas('subjects', ['name' => 'subject_name_dummy']);
 
         $response->assertRedirect(route('subject.show', ['subject_id' => Subject::latest()->first()->id]));
+    }
+
+    public function test_subject_followed_status_ok_subjects_chunk()
+    {
+        $subject = Subject::factory()->create();
+        $this->user->follows()->attach($subject->id);
+
+        $response = $this->get(route('subject.followed'));
+
+        $actual = $this->user->follows->chunk(3);
+
+        $response->assertViewHas('subjects_chunk', $actual);
+    }
+
+    public function test_subject_followed_status_ok_subjects_chunk_empty()
+    {
+        $response = $this->get(route('subject.followed'));
+
+        $empty = $response->viewData('subjects_chunk')->isEmpty();
+
+        $this->assertTrue($empty);
     }
 }

@@ -14,9 +14,4 @@ class Forum extends Model
         'description',
         'subject_id'
     ];
-
-    public function subject()
-    {
-        return $this->belongsTo(Subject::class);
-    }
 }

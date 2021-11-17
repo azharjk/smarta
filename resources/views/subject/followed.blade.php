@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Followed Subjects')
 
 @section('body_content')
-  <h4>Dashboard</h4>
+  <h4>Followed Subjects</h4>
   <div class="container">
     @foreach ($subjects_chunk as $subjects)
       <div class="row p-2">
@@ -12,17 +12,9 @@
             <div class="card">
               <div class="card-body">
                 <h5>{{ $subject['name'] }} #{{ $subject['id'] }}</h5>
-                <p><small>{{ $subject['user']['first_name'] . ' ' . $subject['user']['last_name'] . ' <' . $subject['user']['email'] . '>' }}</small></p>
+                <p><small>{{ $subject['user']['first_name'] . ' ' . $subject['user']['last_name'] . '<' . $subject['user']['email'] . '>' }}</small></p>
                 <p>{{ is_null($subject['description']) ? 'No description provided' : $subject['description'] }}</p>
                 <a href="{{ route('subject.show', ['subject_id' => $subject['id']]) }}">Visit</a>
-                {{-- Only frontend validation for creator follow his own subject --}}
-                @if (Auth::user()->email !== $subject['user']['email'])
-                  @if ($subject->followers()->where('follower_id', Auth::user()->id)->exists())
-                    <a href="{{ route('user.unfollow', ['subject_id' => $subject['id']]) }}">Unfollow</a>
-                  @else
-                    <a href="{{ route('user.follow', ['subject_id' => $subject['id']]) }}">Follow</a>
-                  @endif
-                @endif
               </div>
             </div>
           </div>
@@ -32,6 +24,5 @@
         @endfor
       </div>
     @endforeach
-  </div>
 @endsection
 
