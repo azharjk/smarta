@@ -1,0 +1,22 @@
+.signin__container-size {
+  min-height: 520px;
+  max-width: 380px;
+}
+
+.signup__container-size {
+  min-height: 580px;
+  max-width: 1080px;
+}
+
+.signup__form-group-size {
+  max-width: 540px;
+}
+
+.sidebar__profile-image {
+  height: 34px;
+  margin-right: 1rem;
+}
+
+.sidebar__margin {
+  margin-left: 400px;
+}

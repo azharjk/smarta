@@ -1,0 +1,35 @@
+Guest:
+    Allowed Access:
+        - auth.signin
+        - auth.signup
+
+        - auth.login
+        - auth.register
+
+    Disallowed Access:
+        - dashboard
+
+        - auth.logout
+
+        - subject.index
+        - subject.show
+
+        - forum.show
+
+Auth:
+    Disallowed Access:
+        - auth.signin
+        - auth.signup
+
+        - auth.login
+        - auth.register
+
+    Allowed Access:
+        - dashboard
+
+        - auth.logout
+
+        - subject.index
+        - subject.show
+
+        - forum.show
