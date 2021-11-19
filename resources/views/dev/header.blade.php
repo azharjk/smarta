@@ -66,6 +66,8 @@
       drawerOverlay.classList.remove('bg-opacity-0');
       drawerOverlay.classList.add('bg-opacity-20');
 
+      drawerOverlay.addEventListener('click', closeDrawer);
+
       drawer.classList.remove('-left-full');
       drawer.classList.add('left-0');
     }
@@ -73,6 +75,8 @@
     function closeDrawer() {
       drawer.classList.remove('left-0');
       drawer.classList.add('-left-full');
+
+      drawerOverlay.removeEventListener('click', closeDrawer);
 
       drawerOverlay.classList.remove('bg-opacity-20');
       drawerOverlay.classList.add('bg-opacity-0');
