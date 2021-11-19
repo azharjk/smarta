@@ -7,6 +7,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DevController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,4 @@ Route::middleware('auth')->group(function() {
     Route::post('/forums/create', [ForumController::class, 'store'])->name('forum.store');
 });
 
+Route::any('/dev/{file_path}', DevController::class)->where('file_path', '.*');
