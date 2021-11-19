@@ -14,8 +14,9 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+/reports
 
 # Feature
 SMARTA_PAGES
 SMARTA_MODELS
-SMARTA_TESTS
+SMARTA_PERMISSIONS
